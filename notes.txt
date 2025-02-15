@@ -1,0 +1,28 @@
+github repo => https://github.com/SangeethaShanmugm
+
+extensions
+
+>> Prettier - Code formatter
+>> Spell check
+>> vscode-icons
+>> gitlens
+>> githistory
+>> auto rename tag
+>> auto close tag
+
+
+Github and vs connection
+---------------------------
+https://git-scm.com/downloads => download gitbash 
+
+Set your username: git config --global user.name "FIRST_NAME LAST_NAME"
+Set your email address: git config --global user.email "MY_NAME@example.com"
+
+
+CRUD methods + HTTP method
+-----------------
+
+C - Create  => add/insert   => post
+R - Read    => getting      => get
+U - Update  => edit/update  => put
+D - Delete  => delete       => delete 
