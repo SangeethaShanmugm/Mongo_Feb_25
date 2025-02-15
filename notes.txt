@@ -20,7 +20,7 @@ Set your email address: git config --global user.email "MY_NAME@example.com"
 
 
 CRUD methods + HTTP method
------------------
+----------------------------
 
 C - Create  => add/insert   => post
 R - Read    => getting      => get
