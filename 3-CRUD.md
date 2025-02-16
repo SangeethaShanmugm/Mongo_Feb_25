@@ -68,7 +68,89 @@ db.books.insertOne(
 }
 )
 
-
 db.books.find({name: "I Can Do It"}).pretty()
 
 db.books.count()
+
+//Restaurant data CRUD
+
+db.restaurant.find().pretty()
+
+//condition => query operator
+
+db.restaurant.find({condition}).pretty()
+
+db.restaurant.find({cost: {$gt: 1000}}).pretty()
+
+//get "restaurant_name" : "Burger King"
+
+db.restaurant.find({restaurant_name: {$eq: "Burger King"}}).pretty()
+
+//projection
+
+> > inclusion => 1
+
+db.restaurant.find({condition}, {projection}).pretty()
+
+db.restaurant.find({cost: {$gt: 1000}}, {restaurant_name: 1, average_rating: 1, cost: 1}).pretty()
+
+> > exclusion => 0
+
+db.restaurant.find({cost: {$gt: 1000}}, {restaurant_name: 0, average_rating: 0, cost: 0}).pretty()
+
+> > inclusion + exclusion ❌
+
+db.restaurant.find({cost: {$gt: 1000}}, {restaurant_name: 1, average_rating: 1, cost: 0}).pretty()
+
+> > ignore \_id
+
+db.restaurant.find({cost: {$gt: 1000}}, {\_id: 0, restaurant_name: 1, average_rating: 1, cost: 1}).pretty()
+
+// gt & lt => 500 - 1000
+
+db.restaurant.find({cost: {$gt: 500, $lt: 1000}}, {restaurant_name: 1, cost: 1}).pretty()
+
+// $or || $and
+
+db.restaurant.find(
+{$or: [ {cost: {$gt: 500, $lt: 1000}}, {cost: {$gt: 2000, $lt: 2500}} ]},
+{restaurant_name: 1, cost: 1}
+).pretty()
+
+// in & nin
+db.restaurant.find().pretty()
+
+db.restaurant.find(
+{"mealTypes.mealtype_name": { $in: ["Breakfast", "Drinks","Lunch"]} },
+{restaurant_name: 1, cost: 1, mealTypes: 1}
+).pretty()
+
+10 mins
+//nin => Breakfast, Lunch, Dinner
+
+db.restaurant.find(
+{"mealTypes.mealtype_name": { $nin: ["Breakfast", "Dinner","Lunch"]} },
+{restaurant_name: 1, cost: 1, mealTypes: 1}
+).pretty()
+
+//and => "mealTypes.mealtype_id": 4, "mealTypes.mealtype_id": 5
+
+db.restaurant.find(
+{$and: [{"mealTypes.mealtype_id": 4},{"mealTypes.mealtype_id": 5} ]},
+{restaurant_name: 1, cost: 1,mealTypes: 1}
+).pretty()
+
+//sorting
+
+//asc = 1
+db.restaurant.find({},{restaurant_name: 1, cost: 1}).sort({cost: 1}).pretty()
+
+//desc = -1
+db.restaurant.find({},{restaurant_name: 1, cost: 1}).sort({cost: -1}).pretty()
+
+//limit
+db.restaurant.find({},{restaurant_name: 1, cost: 1}).sort({restaurant_name: -1}).limit(5).pretty()
+
+//skip
+
+db.restaurant.find({},{restaurant_name: 1, cost: 1}).sort({restaurant_name: 1}).limit(5).skip(5).pretty()
