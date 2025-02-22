@@ -154,3 +154,155 @@ db.restaurant.find({},{restaurant_name: 1, cost: 1}).sort({restaurant_name: -1})
 //skip
 
 db.restaurant.find({},{restaurant_name: 1, cost: 1}).sort({restaurant_name: 1}).limit(5).skip(5).pretty()
+
+//update
+
+db.hotels.find().pretty()
+
+db.collection.update(
+<condition>
+<what you want to update>
+)
+
+db.hotels.find(
+{\_id:"2"}
+).pretty()
+
+db.hotels.update(
+{\_id:"2"},
+{
+$set: { cost : 5000}
+}
+)
+
+db.hotels.find({"type.name" : "Premiere Rooms"}).pretty()
+
+//update ID: 2, type -> 1st array data to Premium Rooms
+
+db.hotels.update(
+{\_id:"2"},
+{
+$set: { "type.1.name":"Premium Rooms"}
+}
+)
+
+//update all Premiere Rooms to Premium Rooms
+
+db.hotels.find({"type.name" : "Premiere Rooms"}).pretty()
+
+db.hotels.update(
+{"type.name":"Premiere Rooms"},
+{
+$set: { "type.$.name":"Premium Rooms"}
+},
+{multi: true}
+)
+
+//pop => remove
+// 1 => last element to remove
+// -1 => first element to remove
+
+var a = [1,2,3,4,5]
+a.pop()
+
+db.hotels.find({_id:"1" }).pretty()
+
+db.hotels.update(
+    {_id:"1" },
+    { 
+        $pop: 
+                {
+                 type : 1
+                }
+    }
+    )
+
+
+//push
+
+db.hotels.update(
+    {_id: "1"},
+    {
+        $push:{
+                "type": 
+                {
+                        "roomtype" : "2",
+                        "name" : "Premium Rooms"
+                }
+        }
+    }
+)
+
+
+//unset => delete particular field
+
+db.hotels.update(
+    {_id:"1"},
+    {
+        $unset:{
+            locality: ""
+        }
+    }
+)
+
+// "locality" : "Aerocity, New Delhi",
+
+
+db.hotels.update(
+    {_id:"1"},
+    {
+        $set:{
+            locality: "Aerocity, New Delhi"
+        }
+    }
+)
+
+
+//date 
+
+
+db.hotels.insert(
+    {
+        "_id" : "19",
+        "name" : "Taj Villas",
+        "city_name" : "New Delhi",
+        "city" : "1",
+        "cost" : 50000,
+        "date": new Date(Date.now())
+    }
+)
+
+
+db.hotels.insert(
+    {
+        "_id" : "20",
+        "dob": { $date: {format: "%y-%M-%d", date: "$date" }}
+    }
+)
+
+db.hotels.insert(
+    {
+        "_id" : "21",
+        "dob": ISODate("2025-02-22"),
+        "date": new Date()
+    }
+)
+
+//delete
+
+
+db.hotels.remove({"_id": "21"})
+
+//remove all documents/records
+db.hotels.remove({})
+
+db.hotels.find({"city_name" : "New Delhi"}).pretty()
+
+db.hotels.deleteMany({"city_name" : "New Delhi"})
+
+db.hotels.find({"city_name" : "New Delhi"}).count()
+
+
+//delete collection
+
+db.hotels.drop()
