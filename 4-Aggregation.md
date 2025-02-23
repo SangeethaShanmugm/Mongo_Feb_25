@@ -70,3 +70,87 @@ db.students.aggregate([
     $unwind: "$subject"
    }
 ]).pretty()
+
+db.employees.find().pretty()
+
+db.employees.aggregate([
+    {
+        $match: {"gender":"female"}
+    }
+])
+
+
+//group employee based on department
+
+db.employees.aggregate([
+    {
+        $group:{
+            _id:"$department.name",
+            totalEmp:{$sum: 1}
+        }
+    }
+])
+
+//avg salary
+
+db.employees.aggregate([
+    {
+        $match:{"gender": "male"}
+    },
+    {
+        $group:{
+            _id:"$department.name",
+            totalEmp:{$sum: 1},
+            totalSalary:{$avg: "$salary"}
+        }
+    },
+    {
+        $sort: {"_id":1}
+    }
+])
+    
+
+db.products.insertMany([
+    {_id:0, productName:"Steel Beam", status:"new", quantity: 10},
+    {_id:1, productName:"Steel Beam", status:"urgent", quantity: 20},
+    {_id:2, productName:"Steel Beam", status:"urgent", quantity: 30},
+    {_id:3, productName:"Iron Rod", status:"new", quantity: 15},
+    {_id:4, productName:"Iron Rod", status:"urgent", quantity: 50},
+    {_id:5, productName:"Iron Rod", status:"urgent", quantity: 10}
+])     
+
+db.products.find().pretty()
+
+
+//select sum(quantity) from products where status="urgent" groupby productName
+//group by productName
+
+//stage - 1
+
+db.products.aggregate([
+    {
+        $match: { status:"urgent"}
+    }
+])
+
+
+//stage - 2
+
+//$group, $sum
+
+db.products.aggregate([
+    {
+        $match: { status:"urgent"}
+    },
+    {
+        $group:{
+            _id:"$productName",
+            totalUrgentQuantity:{$sum:"$quantity"}
+        }
+    }
+])
+
+
+
+
+

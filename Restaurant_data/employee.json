@@ -1,0 +1,68 @@
+db.employees.insert([
+    {
+        "_id": 1,
+        "firstName": "John",
+        "lastName": "King",
+        "gender": "male",
+        "email": "john.king@abc.com",
+        "salary": 5000,
+        "department": {
+            "name": "HR",
+        }
+    },
+    {
+        "_id": 2,
+        "firstName": "Sachin",
+        "lastName": "T",
+        "gender": "male",
+        "email": "sachin.t@abc.com",
+        "salary": 8000,
+        "department": {
+            "name": "Finance"
+        }
+    },
+    {
+        "_id": 3,
+        "firstName": "James",
+        "lastName": "Bond",
+        "gender": "male",
+        "email": "jamesb@abc.com",
+        "salary": 7500,
+        "department": {
+            "name": "Marketing"
+        }
+    },
+    {
+        "_id": 4,
+        "firstName": "Rosy",
+        "lastName": "Brown",
+        "gender": "female",
+        "email": "rosyb@abc.com",
+        "salary": 5000,
+        "department": {
+            "name": "HR"
+        }
+    },
+    {
+        "_id": 5,
+        "firstName": "Kapil",
+        "lastName": "D",
+        "gender": "male",
+        "email": "kapil.d@abc.com",
+        "salary": 4500,
+        "department": {
+            "name": "Finance"
+        }
+    },
+    {
+        "_id": 6,
+        "firstName": "Amitabh",
+        "lastName": "B",
+        "gender": "male",
+        "email": "amitabh.b@abc.com",
+        "salary": 7000,
+        "department": {
+            "name": "Marketing"
+        }
+    }
+])
