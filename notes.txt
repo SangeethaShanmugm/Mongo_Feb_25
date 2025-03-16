@@ -26,3 +26,45 @@ C - Create  => add/insert   => post
 R - Read    => getting      => get
 U - Update  => edit/update  => put
 D - Delete  => delete       => delete 
+
+
+db.restaurant.insert(
+    {
+        "restaurant_id": 15,
+        "restaurant_name": "Punjabi Razoi",
+        "location_id": 11,
+        "state_id": 2,
+        "address": "Kasarvadavli, Thane West, Thane, Mumbai",
+        "restaurnat_thumb": "https://b.zmtcdn.com/data/pictures/chains/7/48607/d37a3f6dcaa58dcd563400d084607875.jpg",
+        "average_rating": 4.5,
+        "rating_text": "Very Good",
+        "cost": 2100,
+        "contact_number": "3496508401",
+        "mealTypes": [
+            {
+                "mealtype_id": 4,
+                "mealtype_name": "Snacks"
+            },
+            {
+                "mealtype_id": 5,
+                "mealtype_name": "Drinks"
+            }
+        ],
+        "cuisines": [
+            {
+                "cuisine_id": 1,
+                "cuisine_name": "North Indain"
+            },
+            {
+                "cuisine_id": 3,
+                "cuisine_name": "Chinese"
+            }
+        ],
+        "image_gallery": [
+            "https://b.zmtcdn.com/data/pictures/9/18812749/6d8902db42fcf423f86d353efcfca597.jpg",
+            "https://b.zmtcdn.com/data/reviews_photos/2cb/64ffe4cd75031be1aa1cf792337d02cb_1589042698.jpg",
+            "https://b.zmtcdn.com/data/reviews_photos/aa0/68eaaf502c40123e316ab06881e9faa0_1550157457.jpg",
+            "https://b.zmtcdn.com/data/reviews_photos/f43/86a268598427ffe4f454644d75f58f43_1576856039.jpg"
+        ]
+    }
+)
